@@ -1,35 +1,31 @@
-# Project Blueprint - Spring Cherry Blossom Recommendation Page
+# Blueprint: UI Overhaul & Feature Enhancement
 
 ## Overview
-A framework-less web application designed to showcase recommended products with a bright and airy "Spring Cherry Blossom" aesthetic. It features an interactive, infinitely scrolling affiliate notice at the top and a dynamic content management system for admins.
+A framework-less web application designed to showcase recommended products with a bright and airy "Spring Cherry Blossom" aesthetic. It features an interactive, infinitely scrolling affiliate notice, a dynamic content management system, and enhanced search/contact features.
 
-## Features & Design
-- **Spring Cherry Blossom Theme:**
-  - Color Palette: Soft Pink (#FFB7C5), Deep Pink (#FF6B81), White (#FFFFFF), and Mint Green (#A8E6CF).
-  - Aesthetic: Clean, bright, and floral-inspired layout with interactive cherry blossom petals.
-- **Infinite Scrolling Notice:**
-  - A conveyor-belt style animation for the "paid advertisement" text.
-- **Admin Dashboard (Vibe Coding Style):**
-  - **Login:** A simple, elegant modal for admin access.
-  - **Dynamic Blocks:** Add, edit, delete, and reorder (Move Up/Down) product links directly on the page.
-  - **Persistence:** Uses `localStorage` to save changes locally.
-- **Responsive Layout:**
-  - Optimized for mobile viewing with modern, interactive buttons.
+## Implemented Features
+*   **Conveyor Belt Notice:** A top-level scrolling notice for affiliate disclaimers with an infinite seamless loop.
+*   **Spring Cherry Blossom Theme:** Soft pink palette, interactive falling petals (🌸, ✨, 🍃), and rounded UI elements.
+*   **Admin Dashboard:** Hidden login (1234), add/delete/reorder product links via `localStorage`.
 
-## Implementation Plan
-1. **Infrastructure:**
-   - Maintain external `style.css` and `main.js`.
-2. **Styling (style.css):**
-   - Design the Admin Login modal and control buttons (Add, Delete, Move).
-   - Add animations for block reordering.
-3. **Structure (index.html):**
-   - Add a hidden login trigger (Footer icon).
-   - Create a template for dynamic product items.
-   - Add a "Login Modal" container.
-4. **Interactivity (main.js):**
-   - **Content Manager:** Logic to render items from `localStorage` or defaults.
-   - **Admin Logic:** Password-protected access (simple hardcoded for prototype) and state management.
-   - **CRUD Operations:** Functions to add, remove, and reorder items.
-   - **Visuals:** Maintain the Cherry Blossom rain effect.
-5. **Validation:**
-   - Ensure "Vibe Coding" style interactions are smooth and intuitive.
+## New UI Enhancement Plan
+
+### 1. Product Search with Magnifying Glass
+*   **Objective:** Enhance UI 직관성 (intuitiveness) by adding a search bar to filter growing product lists.
+*   **Steps:**
+    *   Add a rounded search input in the header area.
+    *   Include a magnifying glass icon (🔍) inside the search bar.
+    *   Implement real-time filtering in `main.js`.
+
+### 2. 'Business Proposal' Button
+*   **Objective:** Create a dedicated, "cute" (아기자기한) contact point for business inquiries.
+*   **Steps:**
+    *   Add a button with a mail icon (✉️) in the profile or footer section.
+    *   Link the button to the Instagram profile `@daily_finds82`.
+    *   Style with soft gradients and hover effects to match the cherry blossom theme.
+
+### 3. Visual Refinement
+*   **Objective:** Maintain the "Spring Vibe" while improving functionality.
+*   **Steps:**
+    *   Ensure the search bar doesn't break the aesthetic flow.
+    *   Update typography and spacing for better readability.

@@ -3,56 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Cherry Blossom - 추천 아이템</title>
+    <title>오늘의 발견</title>
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="style.css">
     <!-- Pretendard Font -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <!-- FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/1109a2cf01.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- 상단 고정 대가성 문구 (Conveyor Belt) -->
+    <!-- ==========================================================================
+       [핵심 기능] 상단 고정 대가성 문구 (무한 컨베이어벨트 애니메이션)
+       ========================================================================== -->
     <div class="affiliate-notice-container">
         <div class="affiliate-notice-content" id="scrolling-notice">
-            <!-- Content populated by JS for infinite loop -->
+            <!-- main.js에서 무한 반복 문구가 자동 생성됩니다. -->
         </div>
     </div>
 
-    <!-- 메인 컨텐츠 -->
+    <!-- 메인 컨텐츠 영역 -->
     <div class="container">
-        
-        <!-- 프로필 영역 -->
-        <header class="profile-section">
-            <h1 id="page-title">🌸 봄날의 추천템 🌸</h1>
-            <p id="page-subtitle">따뜻한 봄 햇살처럼 화사한 아이템들을 만나보세요.</p>
+
+        <!-- [헤더] 프로필 및 로고 영역 -->
+        <header class="header-section">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+                <div class="header-text">
+                    <h1>오늘의 발견</h1>
+                    <p>daily_finds82</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-button"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+                <button class="icon-button"><i class="fa-regular fa-bell"></i></button>
+            </div>
         </header>
 
-        <!-- 링크 리스트 -->
-        <main class="link-list" id="link-list-container">
-            <!-- Dynamic Items will be injected here -->
-        </main>
+        <!-- [비즈니스 제안] 인스타그램 연동 버튼 -->
+        <section class="business-proposal">
+            <p>daily_finds</p>
+            <a href="https://www.instagram.com/daily_finds82/" target="_blank" class="proposal-button">
+                <i class="fa-regular fa-envelope"></i> 비즈니스 제안
+            </a>
+        </section>
 
-        <!-- Admin: Add Item Button (Only visible when logged in) -->
+        <!-- [검색] 키워드로 상품 찾기 -->
+        <section class="search-section">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="검색어를 입력해주세요.">
+            </div>
+            <p class="search-hint">☝️ 제품번호 기억 안 나면 "키워드"로 검색해보세요!</p>
+        </section>
+
+        <!-- ==========================================================================
+           [상품 리스트] 쿠팡파트너스 상품 목록 (main.js의 DEFAULT_ITEMS에서 수정 가능)
+           ========================================================================== -->
+        <main class="item-list" id="item-list-container">
+            <!-- main.js에서 상품 카드들이 동적으로 삽입됩니다. -->
+        </main>
+        
+        <!-- [관리자 전용] 상품 추가 버튼 (로그인 시 노출) -->
         <div class="add-item-container admin-only">
             <button class="btn-add-item" onclick="adminManager.showAddItemPrompt()">+ 새 상품 추가하기</button>
         </div>
 
     </div>
 
-    <!-- Hidden Admin Trigger (Bottom Right) -->
+    <!-- [관리자 전용] 하단 숨김 로그인 트리거 (구석 클릭) -->
     <button class="footer-admin-trigger" onclick="adminManager.toggleLoginModal()" title="Admin Login"></button>
 
-    <!-- Login Modal -->
+    <!-- [관리자 전용] 로그인 모달 -->
     <div class="modal-overlay" id="login-modal">
         <div class="modal-content">
             <h2>Admin Login</h2>
-            <input type="password" id="admin-password" placeholder="비밀번호를 입력하세요 (기본: 1234)">
+            <input type="password" id="admin-password" placeholder="비밀번호 (기본: 1234)">
             <button onclick="adminManager.login()">로그인</button>
             <button onclick="adminManager.toggleLoginModal()" style="background: #ccc; margin-top: 10px;">취소</button>
         </div>
     </div>
 
-    <!-- External JavaScript -->
+    <!-- ==========================================================================
+       [상품 카드 템플릿] 각 상품 블록의 내부 구조 및 스타일 정의
+       ========================================================================== -->
+    <template id="product-card-template">
+        <style>
+            .product-card {
+                background: #fff;
+                border-radius: 16px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                display: flex;
+                align-items: center;
+                padding: 12px;
+                gap: 12px;
+                text-decoration: none;
+                color: inherit;
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .product-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            }
+            .product-image {
+                width: 70px;
+                height: 70px;
+                border-radius: 12px;
+                object-fit: cover;
+                flex-shrink: 0;
+            }
+            .product-info {
+                flex-grow: 1;
+            }
+            .product-title {
+                font-weight: 600;
+                font-size: 1rem;
+                margin: 0;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- target="_blank"는 main.js에서 자동 설정됩니다. -->
+        <a href="#" class="product-card">
+            <img src="" alt="" class="product-image">
+            <div class="product-info">
+                <p class="product-title">상품명</p>
+            </div>
+        </a>
+    </template>
+
+    <!-- 앱 로직 및 애니메이션 스크립트 -->
     <script src="main.js"></script>
 </body>
 </html>
