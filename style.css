@@ -152,6 +152,145 @@ body {
     opacity: 1;
 }
 
+/* ==========================================================================
+   Admin UI & Controls
+   ========================================================================== */
+.admin-only {
+    display: none !important; /* Default hidden */
+}
+
+body.is-admin .admin-only {
+    display: flex !important;
+}
+
+/* Hidden Login Trigger */
+.footer-admin-trigger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.1;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.footer-admin-trigger:hover {
+    opacity: 0.8;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--soft-shadow);
+    max-width: 320px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: var(--deep-pink);
+    margin-bottom: 20px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid var(--primary-pink);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    background: var(--deep-pink);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Admin Controls on Buttons */
+.item-wrapper {
+    position: relative;
+}
+
+.admin-controls {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    gap: 5px;
+    z-index: 10;
+}
+
+.control-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--deep-pink);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.control-btn.delete { background: #ff4757; }
+.control-btn.move { background: var(--leaf-green); color: #444; }
+
+/* Add Item Button */
+.add-item-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-add-item {
+    padding: 15px 30px;
+    background: var(--primary-pink);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--soft-shadow);
+    transition: background 0.3s;
+}
+
+.btn-add-item:hover {
+    background: var(--deep-pink);
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .container {
